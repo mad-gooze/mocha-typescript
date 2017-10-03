@@ -23,7 +23,7 @@ function assertOutput(actualStr, expectedStr) {
     }
 }
 
-@suite("typescript", slow(5000), timeout(15000))
+@suite.only("typescript", slow(5000), timeout(15000))
 class SuiteTest {
 
     @test("target v1 es5") es5() {
@@ -76,6 +76,10 @@ class SuiteTest {
 
     @test "context suite es6"() {
         this.run("es6", "context.suite");
+    }
+
+    @test.only() "retries suite es6"() {
+        this.run("es6", "retries");
     }
 
     private run(target: string, ts: string) {
